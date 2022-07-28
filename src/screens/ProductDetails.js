@@ -11,6 +11,7 @@ import styles from './components/Styles';
 // import {relativeWidth, SCREEN_WIDTH} from '../../utils/helpers';
 import {connect} from 'react-redux';
 import Actions from './redux/Actions';
+import TitleHeader from './components/TitleHeader';
 
 const ProductDetails = ({
   route,
@@ -31,18 +32,8 @@ const ProductDetails = ({
 
   return (
     <View style={styles.detailContainer}>
-        <View style={styles.titleContainer}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Image style={styles.back} source={require('../assets/ic_back.png')} />
-
-        </TouchableOpacity>
-        <Text
-            numberOfLines={1}
-            style={styles.title}>
-            {productDetails?.name}
-        </Text>
-        <View />
-        </View>
+        <TitleHeader title={productDetails?.name} />
+       
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.tearContainer}>
           <ImageBackground

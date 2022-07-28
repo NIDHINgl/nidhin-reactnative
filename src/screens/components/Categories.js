@@ -8,6 +8,9 @@ import styles from './Styles';
 const Categories = ({
   fetchCategories,
   categories,
+  create=false,
+  selected,
+  onSelect
 }) => {
   useEffect(() => {
     fetchCategories();
@@ -21,15 +24,20 @@ const Categories = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.categoryList}>
-        <Category
-          id={''}
-          index={-1}>
-          All
-        </Category>
-        {categories.map(({name}, index) => (
+        {!create&&(
+            <Category
+            id={0}
+            selected={selected}
+            onSelect={onSelect}>
+            All
+            </Category>
+        )}
+        
+        {categories.map(({name,id}, index) => (
           <Category
-            id={index}
-            index={index}>
+            id={id}
+            selected={selected}
+            onSelect={onSelect}>
             {name}
           </Category>
         ))}
@@ -38,7 +46,7 @@ const Categories = ({
   );
 };
 
-const Category = ({children, selected = -1, index, id,}) => {
+const Category = ({children, selected = -1, onSelect, id}) => {
   // useEffect(() => {
   //   setCountValue(totalCount);
   // }, [totalCount]);
@@ -46,15 +54,19 @@ const Category = ({children, selected = -1, index, id,}) => {
   return (
     <TouchableOpacity
       style={styles.selectedCategory}
+      onPress={()=>onSelect(id,children)}
       >
       <View
-        style={styles.category}>
+        style={
+            Boolean(id === selected)
+              ? styles.categorySelected
+              : styles.category}>
        
         <Text
           style={
-            Boolean(id == selected)
-              ? styles.categoryText
-              : [styles.categoryText, styles.categoryTextSelected]
+            Boolean(id === selected)
+              ? [styles.categoryText, styles.categoryTextSelected]
+              : styles.categoryText
           }>
           {children}
         </Text>

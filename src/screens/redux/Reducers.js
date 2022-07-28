@@ -2,6 +2,7 @@ import {ModuleEvents} from './Actions';
 
 const INITIAL_STATE = {
   categories: [],
+  allProducts: [],
   products: [],
   productDetails:[],
   productDetailsLoading:true,
@@ -22,6 +23,20 @@ const products = (state = INITIAL_STATE, action) => {
         productDetailsLoading: true,
       };
     }
+    case ModuleEvents.FILTER_PRODUCTS: {
+        if(action.category == 'All'){
+            return {
+                ...state,
+                products: state.allProducts,
+              };
+        }else{
+            return {
+                ...state,
+                products: state.allProducts?.filter(item=>item?.category == action.category),
+              };
+        }
+        
+      }
 
   }
 

@@ -3,7 +3,7 @@ export const ModuleEvents = {
     FETCH_PRODUCTS: 'FETCH_PRODUCTS',
     FETCH_PRODUCT_DETAILS: 'FETCH_PRODUCT_DETAILS',
     ADD_PRODUCT: 'ADD_PRODUCT',
-    SET_CATEGORY_STATE: 'SET_CATEGORY_STATE',
+    FILTER_PRODUCTS: 'FILTER_PRODUCTS',
     SET_PRODUCTS_STATE: 'SET_PRODUCTS_STATE',
 
   };
@@ -19,12 +19,18 @@ export const ModuleEvents = {
       type: ModuleEvents.FETCH_PRODUCT_DETAILS,
       id,
     }),
-    addProduct: () => ({
+    addProduct: (data,onResult) => ({
       type: ModuleEvents.ADD_PRODUCT,
+      data,
+      onResult
     }),
     setProductsState: state => ({
         type: ModuleEvents.SET_PRODUCTS_STATE,
         state,
+    }),
+    filterProducts: category => ({
+        type: ModuleEvents.FILTER_PRODUCTS,
+        category,
     }),
    
   };

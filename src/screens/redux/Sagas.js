@@ -4,7 +4,6 @@ import Actions, {ModuleEvents} from './Actions';
 
 const fetchCategoriesApi = async () => {
   const response = await request.get('/categories');
-
   return response.data;
 };
 
@@ -21,18 +20,15 @@ const fetchProductsDetailsApi = async (id) => {
 
 const addProductApi = async data => {
   const response = await request.post('/products', data);
-
   return response.data;
 };
 
 function* fetchCategories() {
   try {
     const data = yield call(fetchCategoriesApi);
-    console.log('sfsdfsdfcategories11',data)
     yield put(Actions.setProductsState({categories:data}));
     
   } catch (e) {
-    alert('er')
     yield put(Actions.setProductsState({categories: []}));
   }
 }
@@ -41,7 +37,7 @@ function* fetchProducts() {
   try {
     const data = yield call(fetchProductsApi);
     if (data?.length > 0) {
-      yield put(Actions.setProductsState({products:data}));
+      yield put(Actions.setProductsState({products:data,allProducts:data}));
     } else {
       yield put(Actions.setProductsState({products: []}));
     }
@@ -53,7 +49,6 @@ function* fetchProducts() {
 function* fetchProductDetails({id}) {
   try {
     const data = yield call(fetchProductsDetailsApi, id);
-    console.log('fetchProductsDetailsApi',data,id)
     if (data) {
       yield put(
         Actions.setProductsState({productDetails: data, productDetailsLoading: false}),
@@ -72,13 +67,21 @@ function* fetchProductDetails({id}) {
 }
 
 
-function* addProduct() {
+function* addProduct({data,onResult}) {
   try {
+    const result = yield call(addProductApi,data);
+    if(result?.id){
+      yield call(onResult,'Successfully created product', 'success');
+
+    }else{
+      yield call(onResult,'Failed to create product', 'failed');
+
+    }
+
    
   } catch (e) {
-    yield put(
-      Actions.setRecentDeals({recentDeals: [], recentDealsLoading: false}),
-    );
+    yield call(onResult,'Failed to create product', 'failed');
+
   }
 }
 

@@ -7,6 +7,7 @@ import {
 import {TouchableOpacity,ActivityIndicator} from 'react-native';
 import Home from '../screens/Home';
 import ProductDetails from '../screens/ProductDetails';
+import CreateProduct from '../screens/CreateProduct';
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,11 @@ export default function RootNavigator() {
             <Stack.Screen
               name="ProductDetails"
               component={ProductDetails}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="CreateProduct"
+              component={CreateProduct}
               options={{headerShown: false}}
             />
         </Stack.Navigator>

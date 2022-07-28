@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     categoryTextSelected: {
-        color: '#000000',
+        color: '#ffffff',
     },
     categoryText: {
         color: '#000000',
@@ -88,6 +88,15 @@ const styles = StyleSheet.create({
         borderRadius: 38,
         marginRight: 8,
         backgroundColor:'#5267F0',
+        borderEndColor:12
+      },
+      categorySelected: {
+        // backgroundColor: '#EFEFEF',
+        paddingHorizontal: relativeWidth(24),
+        paddingVertical: relativeWidth(6),
+        borderRadius: 38,
+        marginRight: 8,
+        backgroundColor:'green',
         borderEndColor:12
       },
 
@@ -319,6 +328,42 @@ const styles = StyleSheet.create({
         width:26,
         height:26
       },
+
+      //form
+      inputHead:{flex:0,justifyContent:'space-between',flexDirection:'row'},
+      multiline: {
+        borderBottomColor: '#8F92A1',
+        borderBottomWidth: 0.25,
+        borderColor: 'white',
+        borderRadius: 4,
+        // color: COLORS.gray,
+        fontSize: 14,
+        fontWeight: '500',
+        height: 122,
+        paddingTop: 14,
+        backgroundColor: 'rgba(247, 247, 247, 0.1)',
+        color: '#000000',
+      },
+      errorMsg:{
+        fontSize:12,
+        color:'red'
+      },
+      submit:{
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#000000',
+        width:150,
+        height:40,
+        borderRadius:12,
+        borderWidth:1,
+        borderColor:'white',
+        alignSelf:'center',
+        marginTop:'8%'
+    },
+    submitText:{
+        color:'white',
+        fontWeight:'bold'
+    }
 
 
   
