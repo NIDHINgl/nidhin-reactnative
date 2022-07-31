@@ -25,8 +25,8 @@ const addProductApi = async data => {
 
 function* fetchCategories() {
   try {
-    const data = yield call(fetchCategoriesApi);
-    yield put(Actions.setProductsState({categories:data}));
+    const {categories} = yield call(fetchCategoriesApi);
+    yield put(Actions.setProductsState({categories}));
     
   } catch (e) {
     yield put(Actions.setProductsState({categories: []}));
@@ -35,9 +35,10 @@ function* fetchCategories() {
 
 function* fetchProducts() {
   try {
-    const data = yield call(fetchProductsApi);
-    if (data?.length > 0) {
-      yield put(Actions.setProductsState({products:data,allProducts:data}));
+    const {products} = yield call(fetchProductsApi);
+
+    if (products?.length > 0) {
+      yield put(Actions.setProductsState({products,allProducts:products}));
     } else {
       yield put(Actions.setProductsState({products: []}));
     }
@@ -70,7 +71,7 @@ function* fetchProductDetails({id}) {
 function* addProduct({data,onResult}) {
   try {
     const result = yield call(addProductApi,data);
-    if(result?.id){
+    if(result?.message == 'Success'){
       yield call(onResult,'Successfully created product', 'success');
 
     }else{

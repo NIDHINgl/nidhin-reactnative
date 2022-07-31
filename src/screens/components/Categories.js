@@ -33,9 +33,9 @@ const Categories = ({
             </Category>
         )}
         
-        {categories.map(({name,id}, index) => (
+        {categories.map(({name,_id}, index) => (
           <Category
-            id={id}
+            id={_id}
             selected={selected}
             onSelect={onSelect}>
             {name}

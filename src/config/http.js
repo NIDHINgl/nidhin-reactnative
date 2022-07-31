@@ -12,6 +12,7 @@ export const request = axios.create({
 });
 
 export function setupHttpConfig() {
-  request.defaults.baseURL = 'https://62286b649fd6174ca82321f1.mockapi.io/case-study';
+  request.defaults.baseURL = 'https://upayments-studycase-api.herokuapp.com/api';
   request.defaults.headers['Accept'] = 'application/json';
+  request.defaults.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZXluaWRoaW4uZy5sQGdtYWlsLmNvbSIsImdpdGh1YiI6Imh0dHBzOi8vZ2l0aHViLmNvbS9OSURISU5nbCIsImlhdCI6MTY1OTI2MDM5NCwiZXhwIjoxNjU5NjkyMzk0fQ.JzEVTZu9YjPfmWw9crLFAyZI76bQzwlk2kks4-2nR6U';
 }
